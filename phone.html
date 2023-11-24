@@ -31,6 +31,7 @@
     </tr>
 </table>
 <script>
+
     class Mobile{
         constructor(battery, draft, inbox, sent) {
             this.battery = battery;
@@ -68,13 +69,13 @@
            phone.inbox.push(this.draft);
            this.draft = "";
         }
-        afterUse(){/
+        afterUse(){
             this.battery--
         }
     }
-    let mobile = new Mobile(20, ' ', [], []);
+    let mobile = new Mobile(20, '', ["Ngắm gì đó"], ["Bạn đang làm gì"]);
     let iphone = new Mobile(20, '',[],[]);
-    let result = "";
+    let phone = new String();
     document.getElementById("result")
     function mainTurnOn(){
         if (mobile.checkStatus()){
@@ -96,17 +97,19 @@
         let text = document.getElementById("result").value;
         mobile.draftMessenger(text);
     }
+    let phoneNumber = "";
     function mainSendMessenger() {
-        if (mobile.checkStatus()){
-            getDraft();
-            let number = prompt("Nhập munber phone");
-        mobile.sendMessenger(number);
+
+        // if (mobile.checkStatus()){
+        getDraft();
+        // phoneNumber = prompt("Nhập munber phone");
+        mobile.sendMessenger(iphone);
         mobile.afterUse();
-        }else{}
+        // }else{}
     }
     function mainShowInbox(){
         if (mobile.checkStatus()) {
-            mobile.showInbox();
+            document.getElementById("result2").innerHTML = mobile.showInbox();
             mobile.afterUse();
         }
     }
@@ -114,9 +117,9 @@
         if (mobile.checkStatus()) {
             mobile.showSent();
             mobile.afterUse();
+            document.getElementById("result2").innerHTML = mobile.showSent();
         }
     }
-
 </script>
 </body>
 </html>
