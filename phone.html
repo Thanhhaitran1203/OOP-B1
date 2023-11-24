@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="6">Mobie</th>
+    </tr>
+    <tr>
+        <td colspan="5"><input type="text" id="result" style="width: 99%"></td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="mainTurnOn()">Turn On</button>
+        </td>
+        <td>
+            <button onclick="mainTurnOff()">Turn Off</button>
+        </td><td>
+        <button onclick="mainSendMessenger()">Send messenger </button>
+    </td><td>
+        <button onclick="mainShowInbox()">Inbox </button>
+    </td><td>
+        <button onclick="mainShowSentbox()">Sentbox</button>
+    </td>
+    </tr>
+    <tr>
+        <td colspan="5" id="result2"></td>
+    </tr>
+</table>
+<script>
+    class Mobile{
+        constructor(battery, draft, inbox, sent) {
+            this.battery = battery;
+            this.draft = draft;
+            this.inbox = inbox;
+            this.sent = sent;
+            }
+        checkStatus(){
+            if(this.battery > 0){
+                return true;
+            }else {
+                return  false;
+            }
+        }
+        turnOn() {
+            alert("Turn on mobile");
+        }
+        turnOff() {
+            alert("Turn off mobile");
+        }
+        change(){
+            this.battery += 50;
+        }
+        draftMessenger(text){
+            this.draft = text;
+        }
+        showInbox(){
+            return this.inbox;
+        }
+        showSent(){
+            return this.sent;
+        }
+        sendMessenger(phone){
+           this.sent.push(this.draft);
+           phone.inbox.push(this.draft);
+           this.draft = "";
+        }
+        afterUse(){/
+            this.battery--
+        }
+    }
+    let mobile = new Mobile(20, ' ', [], []);
+    let iphone = new Mobile(20, '',[],[]);
+    let result = "";
+    document.getElementById("result")
+    function mainTurnOn(){
+        if (mobile.checkStatus()){
+            alert("Mobile đang bật");
+        }else {
+            mobile.turnOn()
+        }
+        mobile.afterUse();
+    }
+    function mainTurnOff(){
+        if (mobile.checkStatus()){
+            mobile.turnOff();
+        }else {
+
+        }
+        mobile.afterUse();
+    }
+    function getDraft() {
+        let text = document.getElementById("result").value;
+        mobile.draftMessenger(text);
+    }
+    function mainSendMessenger() {
+        if (mobile.checkStatus()){
+            getDraft();
+            let number = prompt("Nhập munber phone");
+        mobile.sendMessenger(number);
+        mobile.afterUse();
+        }else{}
+    }
+    function mainShowInbox(){
+        if (mobile.checkStatus()) {
+            mobile.showInbox();
+            mobile.afterUse();
+        }
+    }
+    function mainShowSentbox(){
+        if (mobile.checkStatus()) {
+            mobile.showSent();
+            mobile.afterUse();
+        }
+    }
+
+</script>
+</body>
+</html>
+

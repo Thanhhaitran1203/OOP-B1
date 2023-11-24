@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mô tả hình chữ nhật</title>
+</head>
+<body>
+<canvas id="myCanvas" style="border: 1px solid #888; height: 500px; width: 500px;"></canvas>
+<script type="text/javascript">
+
+
+    class Rectangle{
+        constructor(width, height) {
+            this.width = width;
+            this.height = height;
+            let canvas = document.getElementById('myCanvas'),
+                ctx = canvas.getContext('2d');
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(100, 50, this.width, this.height);
+        }
+        getP(){
+            let  p = (this.width + this.height) * 2;
+            return p;
+        }
+        getArea() {
+            let s = this.height * this.width;
+            return s;
+        }
+    }
+    let a = new Rectangle(100,50);
+    document.write("<br> Chu vi " + a.getP() + "<br>");
+    document.write("Dien tich " + a.getArea());
+
+    console.log(a.getArea());
+</script>
+</body>
+</html>
